@@ -1,0 +1,38 @@
+.mainbody {
+    background-color:white;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: "100%";
+    background-color: crimson;
+    border-radius: 5px;
+  }
+/* Pokedex */
+#resultarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resultwrapper {
+    padding: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    row-gap: 1em;
+
+}
+
+.resultitem {
+    background-color: white;
+    border-radius: 5px;
+}
+
+/* Recently Searched*/
+
+/*.pokesearch{
+
+}*/
