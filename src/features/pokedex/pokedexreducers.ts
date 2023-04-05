@@ -1,9 +1,6 @@
 //Reducer
-import {
-    FETCH_POKEMON_REQUEST,
-    FETCH_POKEMON_SUCCESS,
-    FETCH_POKEMON_FAILURE,
-  } from '../pokedex/pokedexAPI';//Actions
+import { combineReducers } from 'redux';
+import { PokemonActionTypes } from '../pokedex/pokedexactions';//Actions
 import { AppState } from '../../pokemontypes';
   
   const initialState: AppState = {
@@ -12,22 +9,22 @@ import { AppState } from '../../pokemontypes';
     error: null,
   };
   
-  const reducer = (state = initialState, action: any) => {
+ export const pokemonReducer = (state = initialState, action: any) => {
     console.log(action.type);
     switch (action.type) {
-      case FETCH_POKEMON_REQUEST:
+      case PokemonActionTypes.FETCH_POKEMON_REQUEST:
         return {
           ...state,
           loading: true,
           error: null,
         };
-      case FETCH_POKEMON_SUCCESS:
+      case PokemonActionTypes.FETCH_POKEMON_SUCCESS:
         return {
           ...state,
           loading: false,
           pokemonList: action.payload,
         };
-      case FETCH_POKEMON_FAILURE:
+      case PokemonActionTypes.FETCH_POKEMON_FAILURE:
         return {
           ...state,
           loading: false,
@@ -38,9 +35,9 @@ import { AppState } from '../../pokemontypes';
     }
   };
 
-console.log(initialState);
+export const rootReducer = combineReducers({
+  pokemon: pokemonReducer,
+});
 
-console.log("this is the reducer " + reducer);
-
-export default reducer;
+export type RootState = ReturnType<typeof rootReducer>;
   

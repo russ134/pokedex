@@ -1,17 +1,12 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import pokedexReducer from '../features/pokedex/pokedexreducers';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { rootReducer } from '../features/pokedex/pokedexreducers';
 
-export const store = configureStore({
-  reducer:{
-    pokedex: pokedexReducer,
-  }
-});
+export const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunkMiddleware))
+);
 
-export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  RootState,
-  unknown,
-  Action<string>
->;
+export type AppDispatch = typeof store.dispatch;
