@@ -1,24 +1,13 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store'
-import { ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from 'redux';
-import { fetchPokemon } from './pokedexactions';
-import { AppState, Pokemon } from '../../pokemontypes';
+import { Pokemon } from './types/pokemontypes';
 //import { SafeAreaView, TextInput } from 'react-native';
-//import styles from './Pokedex.module.css';
+import styles from './Pokedex.module.css';
 
 
 const Pokedex: React.FC = () => {
-
-    const dispatch: ThunkDispatch<AppState, null, AnyAction> = useDispatch();
-    const { pokemonList, loading, error } = useSelector((state: RootState) => state.pokemon);
   
-    console.log(pokemonList);
-    
-    /*useEffect(() => {
-      dispatch(fetchPokemon());
-    }, [dispatch]);*/
+    const { pokemonList, loading, error } = useSelector((state: RootState) => state.pokemon);
   
     if (loading) {
       return <div>Loading...</div>;
@@ -34,15 +23,21 @@ const Pokedex: React.FC = () => {
     }
   
     return (
-      <div>
-        {pokemonList.map((pokemon: Pokemon) => (
-          <div key={pokemon.id}>
-            <img src={pokemon.imageUrl} alt={pokemon.name} />
-            <p>{pokemon.name}</p>
+      <div className={styles.row}>
+          <div id='resultarea' className={styles.row}>
+              <div className={styles.resultwrapper}>
+              {pokemonList.map((pokemon: Pokemon) => (
+                  <div  key={pokemon.id} className={styles.resultitem}>
+                    <img src={pokemon.imageUrl} alt={pokemon.name} />
+                    <p>{pokemon.name}</p>
+                  </div>
+                  ))}
+              </div>
           </div>
-        ))}
       </div>
     );
+
+
   };
   
   export default Pokedex;

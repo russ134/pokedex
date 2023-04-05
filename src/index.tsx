@@ -4,10 +4,14 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { fetchPokemon } from './features/pokedex/pokedexactions';
 import './index.css';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
+
+//Dispatch to load Pokemon to UI
+store.dispatch(fetchPokemon());
 
 root.render(
   <React.StrictMode>

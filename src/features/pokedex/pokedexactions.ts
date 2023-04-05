@@ -2,8 +2,7 @@ import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
 import { RootState } from '../pokedex/pokedexreducers';
-import { Pokemon } from '../../pokemontypes';
-//import { PokemonActionTypes } from './pokedexactiontypes';
+import { Pokemon } from './types/pokemontypes';
 
 // Action types
 export enum PokemonActionTypes {
