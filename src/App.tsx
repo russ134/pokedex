@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './images/logo_pokedex.png';
-import  Pokedex from './features/pokedex/Pokedex';
+//import Pokedex from './features/pokedex/Pokedex';
+import SearchPokedexList from './features/pokedex/SearchPokedexList';
 import './App.css';
 
 function App() {
@@ -9,7 +10,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div>
-          <Pokedex />
+          <SearchPokedexList />
+          {/*<Pokedex />*/}
         </div>
       </header>
     </div>

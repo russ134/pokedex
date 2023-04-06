@@ -7,7 +7,6 @@
     align-items: center;
     justify-content: center;
     height: "100%";
-    background-color: crimson;
     border-radius: 5px;
   }
 /* Pokedex */
@@ -23,6 +22,11 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 10px;
     row-gap: 1em;
+    align-items: center;
+    justify-content: center;
+    height: "100%";
+    background-color: crimson;
+    border-radius: 5px;
 
 }
 
@@ -33,6 +37,6 @@
 
 /* Recently Searched*/
 
-/*.pokesearch{
-
+/*.pokesearchbar {
+    size: 50;
 }*/

@@ -54,7 +54,7 @@ export const fetchPokemon = (): ThunkAction<
   PokemonActions> => async (dispatch: Dispatch<PokemonActions>, getState: () => RootState) => {
   dispatch(fetchPokemonRequest());
   axios
-    .get('https://pokeapi.co/api/v2/pokemon?limit=20')
+    .get('https://pokeapi.co/api/v2/pokemon?limit=100')
     .then((response) => {
       const pokemonList = response.data.results.map((pokemon: any, index: number) => {
         return {
