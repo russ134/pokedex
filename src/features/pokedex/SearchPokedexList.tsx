@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const SearchPokemonList = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [pokemonMoves, setPokemonMoves] = useState<string[][]>([]);
   const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList);
 
@@ -34,14 +35,33 @@ const SearchPokemonList = () => {
     }
   }, [selectedPokemon]);
 
+  const handleSearch = (searchTerm: string) => {
+    setSearchQuery(searchTerm);
+    setSearchHistory((prevState) => [...prevState, searchTerm]);
+  };
+
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search Pokemon..."
-        value={searchQuery}
-        onChange={(event) => setSearchQuery(event.target.value)}
-      />
+      <div>
+        <label htmlFor="searchInput">I choose: </label>
+        <input
+          type="text"
+          id="searchInput"
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+        />
+        <button onClick={() => handleSearch(searchQuery)}>Search</button>
+      </div>
+      {searchHistory.length > 0 && (
+        <div>
+          <p>Search History:</p>
+          <ul>
+            {searchHistory.map((term, index) => (
+              <li key={index}>{term}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <div id="searchresults" className={styles.row}>
         <div className={styles.resultwrapper}>
           {filteredPokemon.map((pokemon: Pokemon, index: number) => (
@@ -60,21 +80,22 @@ const SearchPokemonList = () => {
           <div className={styles.popup}>
             <div className={styles.popupContent}>
               <button className={styles.closeButton} onClick={() => setSelectedPokemon(null)}>X</button>
-              <h3>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h3>
-              <ul>
+          <div>
+              <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h4>
+            <div id="movelist">
+              <ul className={styles.movelist}>
               {pokemonMoves.map((moves: string[], index: number) => (
                     moves.length > 0 && (
-                        <li key={index}>
-                            <h4>{selectedPokemon?.name.charAt(0).toUpperCase()+selectedPokemon?.name?.slice(1)}</h4>
-                            <ul>
-                                {moves.filter(Boolean).map((moveName: string, i: number) => (
-                                    <li key={i}>{moveName.charAt(0).toUpperCase()+moveName.slice(1)}</li>
-                                ))}
-                            </ul>
-                        </li>
+                    <li key={index}>
+                      {moves.filter(Boolean).map((moveName: string, i: number) => (
+                          <li key={i}>{moveName.charAt(0).toUpperCase()+moveName.slice(1)}</li>
+                      ))}
+                    </li>
                     )
                 ))}
               </ul>
+            </div>
+          </div>
             </div>
           </div>
         )}

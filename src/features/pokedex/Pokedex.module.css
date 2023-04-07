@@ -36,6 +36,24 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+/*Pokemon moves*/
+
+#movlist {
+    background-color: #fed9ff;
+    width: 600px;
+    height: 150px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: center;
+    padding: 20px;
+    text-align: center;
+}
+
+ul.movelist{
+    display: inline-block;
+    text-align: left;
+}
+
 /* Recently Searched*/
 
 /*.pokesearchbar {
