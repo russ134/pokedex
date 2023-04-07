@@ -6,6 +6,13 @@ export interface Pokemon {
 
 }
 
+export interface Move {
+    move: {
+      name: string;
+      url: string;
+    };
+  }
+
 
 export interface AppState {
     pokemonList: Pokemon[];

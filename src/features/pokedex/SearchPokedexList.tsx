@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from './pokedexreducers';
-import { Pokemon } from './types/pokemontypes';
+import { Pokemon, Move} from './types/pokemontypes';
 import styles from './Pokedex.module.css';
 import axios from 'axios';
 
 const SearchPokemonList = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [pokemonMoves, setPokemonMoves] = useState<any[]>([]);
+  const [pokemonMoves, setPokemonMoves] = useState<string[][]>([]);
   const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList);
 
-  const [showPopup, setShowPopup] = useState(false);
-
-  function handleDivClick() {
-    setShowPopup(true);
-  }
-
-  function handleCloseClick() {
-    setShowPopup(false);
-  }
+  const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
 
   const filteredPokemon = pokemonList.filter((pokemon: Pokemon) =>
-    pokemon.name.includes(searchQuery.toLowerCase())
+    pokemon?.name?.includes(searchQuery.toLowerCase())
   );
 
   const fetchPokemonMoves = async (id: number) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    const moves = response.data.moves;
-    setPokemonMoves((prevMoves) => [...prevMoves, moves]);
-  };
+    console.log(response.data.moves);
+    const moves: any[] = response.data.moves.map((move: Move) => move.move);
+    const movesArray: string[] = moves
+      .filter((move) => move && move.move && move.move?.name)
+      .map((move) => move.move?.name);
+    setPokemonMoves((prevState) => [...prevState, movesArray]);
 
+    console.log(movesArray);
+  };
+  
   useEffect(() => {
     setPokemonMoves([]);
-    filteredPokemon.forEach((pokemon: Pokemon) => {
-      fetchPokemonMoves(pokemon.id);
-    });
-  }, [filteredPokemon]);
+    if (selectedPokemon) {
+      fetchPokemonMoves(selectedPokemon.id);
+    }
+  }, [selectedPokemon]);
 
   return (
     <div>
@@ -48,23 +46,34 @@ const SearchPokemonList = () => {
       <div id="searchresults" className={styles.row}>
         <div className={styles.resultwrapper}>
           {filteredPokemon.map((pokemon: Pokemon, index: number) => (
-            <div id="pokeitem" key={pokemon.id} className={styles.resultitem} onClick={handleDivClick}>
+            <div id="pokeitem" key={pokemon.id} className={styles.resultitem} onClick={() => setSelectedPokemon(pokemon)}>
               <img src={pokemon.imageUrl} alt={pokemon.name} />
               <p>{pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)}</p>
-              {showPopup && (
-                <div>
-                  <h3>{pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)} Moves:</h3>
-                  <ul>
-                    {pokemonMoves[index]?.map((move: any, i: number) => (
-                      <li key={i}>{move.move.name.charAt(0).toUpperCase()+move.move.name.slice(1)}</li>
-                    ))}
-                  </ul>
-                  <button onClick={handleCloseClick}>Close</button>
-                </div>
-              )}
             </div>
           ))}
         </div>
+        {selectedPokemon && (
+          <div className={styles.popup}>
+            <div className={styles.popupContent}>
+              <button className={styles.closeButton} onClick={() => setSelectedPokemon(null)}>X</button>
+              <h3>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h3>
+              <ul>
+              {pokemonMoves.map((moves: string[], index: number) => (
+                    moves.length > 0 && (
+                        <li key={index}>
+                            <h4>{selectedPokemon?.name.charAt(0).toUpperCase()+selectedPokemon?.name?.slice(1)}</h4>
+                            <ul>
+                                {moves.filter(Boolean).map((moveName: string, i: number) => (
+                                    <li key={i}>{moveName}</li>
+                                ))}
+                            </ul>
+                        </li>
+                    )
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
