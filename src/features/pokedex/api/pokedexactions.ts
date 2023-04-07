@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import axios from 'axios';
-import { RootState } from '../pokedex/pokedexreducers';
-import { Pokemon } from './types/pokemontypes';
+import { RootState } from '../pokedexreducers';
+import { Pokemon } from '../types/pokemontypes';
 
 // Action types
 export enum PokemonActionTypes {
@@ -54,8 +54,9 @@ export const fetchPokemon = (): ThunkAction<
   PokemonActions> => async (dispatch: Dispatch<PokemonActions>, getState: () => RootState) => {
   dispatch(fetchPokemonRequest());
   axios
-    .get('https://pokeapi.co/api/v2/pokemon?limit=100')
+    .get('https://pokeapi.co/api/v2/pokemon?limit=905')
     .then((response) => {
+      //console.log(response);
       const pokemonList = response.data.results.map((pokemon: any, index: number) => {
         return {
           id: index + 1,
@@ -64,11 +65,34 @@ export const fetchPokemon = (): ThunkAction<
         };
       });
       dispatch(fetchPokemonSuccess(pokemonList));
-      console.log(pokemonList);//TODO: Remove when finished
-      //console.log(response.data.results);
     })
     .catch((error) => {
       dispatch(fetchPokemonFailure(error.message));
     });
 };
+
+// Thunk action creator to fetch Pokemon data
+/*export const fetchPokemonMoves = (): ThunkAction<
+  void,
+  RootState,
+  null,
+  PokemonActions> => async (dispatch: Dispatch<PokemonActions>, getState: () => RootState) => {
+  dispatch(fetchPokemonRequest());
+  axios
+    .get('https://pokeapi.co/api/v2/move/?limit=905')
+    .then((response) => {
+      console.log(response);
+      const pokemonList = response.data.results.map((pokemon: any, index: number) => {
+        return {
+          id: index + 1,
+          name: pokemon.name,
+          imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
+        };
+      });
+      dispatch(fetchPokemonSuccess(pokemonList));
+    })
+    .catch((error) => {
+      dispatch(fetchPokemonFailure(error.message));
+    });
+};*/
 

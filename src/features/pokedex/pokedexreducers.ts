@@ -1,6 +1,6 @@
 //Reducer
 import { combineReducers } from 'redux';
-import { PokemonActionTypes } from '../pokedex/pokedexactions';//Actions
+import { PokemonActionTypes } from './api/pokedexactions';//Actions
 import { AppState } from './types/pokemontypes';
   
   const initialState: AppState = {
@@ -10,7 +10,6 @@ import { AppState } from './types/pokemontypes';
   };
   
  export const pokemonReducer = (state = initialState, action: any) => {
-    console.log(action.type);
     switch (action.type) {
       case PokemonActionTypes.FETCH_POKEMON_REQUEST:
         return {
