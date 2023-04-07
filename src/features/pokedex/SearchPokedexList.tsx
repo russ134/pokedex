@@ -19,13 +19,14 @@ const SearchPokemonList = () => {
   const fetchPokemonMoves = async (id: number) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     console.log(response.data.moves);
-    const moves: any[] = response.data.moves.map((move: Move) => move.move);
+    const moves: any[] = response.data.moves.map((move: any) => move.move);
     const movesArray: string[] = moves
       .filter((move) => move && move.move && move.move?.name)
       .map((move) => move.move?.name);
+    if(movesArray){
     setPokemonMoves((prevState) => [...prevState, movesArray]);
-
-    console.log(movesArray);
+    console.log(setPokemonMoves((prevState) => [...prevState, movesArray]));
+    }
   };
   
   useEffect(() => {
