@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from './pokedexreducers';
-import { Pokemon, Move} from './types/pokemontypes';
+import { Pokemon, Move } from './types/pokemontypes';
 import styles from './Pokedex.module.css';
 import axios from 'axios';
 
@@ -18,17 +18,15 @@ const SearchPokemonList = () => {
 
   const fetchPokemonMoves = async (id: number) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    console.log(response.data.moves);
-    const moves: any[] = response.data.moves.map((move: any) => move.move);
+    const moves: any[] = response.data.moves.map((move: Move) => move.move);
     const movesArray: string[] = moves
-      .filter((move) => move && move.move && move.move?.name)
-      .map((move) => move.move?.name);
-    if(movesArray){
-    setPokemonMoves((prevState) => [...prevState, movesArray]);
-    console.log(setPokemonMoves((prevState) => [...prevState, movesArray]));
+      .filter((move) => move && move.name)
+      .map((move) => move.name);
+    if (movesArray.length > 0) {
+      setPokemonMoves((prevState) => [...prevState, movesArray]);
     }
   };
-  
+
   useEffect(() => {
     setPokemonMoves([]);
     if (selectedPokemon) {
@@ -47,9 +45,14 @@ const SearchPokemonList = () => {
       <div id="searchresults" className={styles.row}>
         <div className={styles.resultwrapper}>
           {filteredPokemon.map((pokemon: Pokemon, index: number) => (
-            <div id="pokeitem" key={pokemon.id} className={styles.resultitem} onClick={() => setSelectedPokemon(pokemon)}>
+            <div
+              id="pokeitem"
+              key={pokemon.id}
+              className={styles.resultitem}
+              onClick={() => setSelectedPokemon(pokemon)}
+            >
               <img src={pokemon.imageUrl} alt={pokemon.name} />
-              <p>{pokemon.name.charAt(0).toUpperCase()+pokemon.name.slice(1)}</p>
+              <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
             </div>
           ))}
         </div>
@@ -65,7 +68,7 @@ const SearchPokemonList = () => {
                             <h4>{selectedPokemon?.name.charAt(0).toUpperCase()+selectedPokemon?.name?.slice(1)}</h4>
                             <ul>
                                 {moves.filter(Boolean).map((moveName: string, i: number) => (
-                                    <li key={i}>{moveName}</li>
+                                    <li key={i}>{moveName.charAt(0).toUpperCase()+moveName.slice(1)}</li>
                                 ))}
                             </ul>
                         </li>
