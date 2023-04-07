@@ -5,7 +5,7 @@ import { Pokemon, Move } from './types/pokemontypes';
 import styles from './Pokedex.module.css';
 import axios from 'axios';
 
-const SearchPokemonList = () => {
+const SearchPokedexList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchHistory, setSearchHistory] = useState<string[]>([]);
   const [pokemonMoves, setPokemonMoves] = useState<string[][]>([]);
@@ -104,4 +104,4 @@ const SearchPokemonList = () => {
   );
 };
 
-export default SearchPokemonList;
+export default SearchPokedexList;
