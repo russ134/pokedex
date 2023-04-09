@@ -13,9 +13,7 @@ function App() {
           {/*<Pokedex />*/}
         </div>
       </header>
-      <body className="Body">
       <SearchPokedexList />
-      </body>
     </div>
   );
 }

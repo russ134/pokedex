@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: cornflowerblue;
+  height: 100vh;
 }
 
 .App-logo {
@@ -25,10 +26,6 @@
 
 .App-link {
   color: rgb(112, 76, 182);
-}
-
-.Body {
-  height: 100vh;
 }
 
 /*Floating logo CSS*/
