@@ -10,10 +10,12 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div>
-          <SearchPokedexList />
           {/*<Pokedex />*/}
         </div>
       </header>
+      <body className="Body">
+      <SearchPokedexList />
+      </body>
     </div>
   );
 }

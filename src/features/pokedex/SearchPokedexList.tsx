@@ -41,65 +41,82 @@ const SearchPokedexList = () => {
   };
 
   return (
-    <div>
+    <div id="parentwrapper" className={styles.parentwrapper}>
+
+  
+<div className={styles.section}>
+  <div id="searchhistory" className={styles.searchhistory}>
+    {searchHistory.length > 0 && (
       <div>
-        <label htmlFor="searchInput">I choose: </label>
-        <input
-          type="text"
-          id="searchInput"
-          value={searchQuery}
-          onChange={(event) => setSearchQuery(event.target.value)}
-        />
-        <button onClick={() => handleSearch(searchQuery)}>Search</button>
+        <p>Search History:</p>
+        <ul>
+          {searchHistory.map((term, index) => (
+            <li key={index}>{term}</li>
+          ))}
+        </ul>
       </div>
-      {searchHistory.length > 0 && (
+    )}
+  </div>
+</div>
+
+<div className={styles.section}>
+  <div id="queryresults" className={styles.queryresults}>
+    <div id="searchbar" className={styles.searchbar}>
+      <label htmlFor="searchInput">I choose: </label>
+      <input
+        type="text"
+        id="searchInput"
+        value={searchQuery}
+        onChange={(event) => setSearchQuery(event.target.value)}
+      />
+      <button onClick={() => handleSearch(searchQuery)}>Search</button>
+    </div>
+
+    <div id="searchresults" className={styles.row}>
+      <div className={styles.resultwrapper}>
+        {filteredPokemon.map((pokemon: Pokemon, index: number) => (
+          <div
+            id="pokeitem"
+            key={pokemon.id}
+            className={styles.resultitem}
+            onClick={() => setSelectedPokemon(pokemon)}>
+            <img src={pokemon.imageUrl} alt={pokemon.name} />
+            <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className={styles.section}>
+    <div id="pokedetails" className={styles.pokedetails}>
+      {selectedPokemon && (
+        <div className={styles.popup}>
+          <div className={styles.popupContent}>
+            <button className={styles.closeButton} onClick={() => setSelectedPokemon(null)}>X</button>
         <div>
-          <p>Search History:</p>
-          <ul>
-            {searchHistory.map((term, index) => (
-              <li key={index}>{term}</li>
-            ))}
-          </ul>
+            <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h4>
+          <div id="movelist">
+            <ul className={styles.movelist}>
+            {pokemonMoves.map((moves: string[], index: number) => (
+                  moves.length > 0 && (
+                  <li key={index}>
+                    {moves.filter(Boolean).map((moveName: string, i: number) => (
+                        <li key={i}>{moveName.charAt(0).toUpperCase()+moveName.slice(1)}</li>
+                    ))}
+                  </li>
+                  )
+              ))}
+            </ul>
+          </div>
+        </div>
+          </div>
         </div>
       )}
-      <div id="searchresults" className={styles.row}>
-        <div className={styles.resultwrapper}>
-          {filteredPokemon.map((pokemon: Pokemon, index: number) => (
-            <div
-              id="pokeitem"
-              key={pokemon.id}
-              className={styles.resultitem}
-              onClick={() => setSelectedPokemon(pokemon)}
-            >
-              <img src={pokemon.imageUrl} alt={pokemon.name} />
-              <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
-            </div>
-          ))}
-        </div>
-        {selectedPokemon && (
-          <div className={styles.popup}>
-            <div className={styles.popupContent}>
-              <button className={styles.closeButton} onClick={() => setSelectedPokemon(null)}>X</button>
-          <div>
-              <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h4>
-            <div id="movelist">
-              <ul className={styles.movelist}>
-              {pokemonMoves.map((moves: string[], index: number) => (
-                    moves.length > 0 && (
-                    <li key={index}>
-                      {moves.filter(Boolean).map((moveName: string, i: number) => (
-                          <li key={i}>{moveName.charAt(0).toUpperCase()+moveName.slice(1)}</li>
-                      ))}
-                    </li>
-                    )
-                ))}
-              </ul>
-            </div>
-          </div>
-            </div>
-          </div>
-        )}
-      </div>
+    </div>
+</div>
+
     </div>
   );
 };

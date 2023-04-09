@@ -8,9 +8,51 @@
     justify-content: center;
     height: "100%";
     border-radius: 5px;
+}
+
+/*Parent Wrapper*/
+
+div.parentwrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section {
+    width: calc(33.33% - 20px);
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+    margin-bottom: 20px;
+    min-height: 60vh;
   }
+/*Search Bar*/
+/*#searchbar {
+
+}*/
+
+/* Recently Searched*/
+div.searchhistory{
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+div.queryresults {
+    max-height: 60vh;
+    overflow: auto;
+}
+
+
 /* Pokedex */
-#resultarea {
+div.pokedetails{
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow: auto;
+}
+
+div.resultarea {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,6 +69,7 @@
     height: "100%";
     background-color: crimson;
     border-radius: 5px;
+    min-height: 60vh;
 
 }
 
@@ -36,14 +79,23 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/*Pokemon moves*/
+/*.scrollable-list {
+    height: 200px;
+    overflow-y: scroll;
+  }*/
 
-#movlist {
+/*Pokemon Details*/
+/*div.pokedetails{
+
+}*/
+
+
+div.movelist {
     background-color: #fed9ff;
     width: 600px;
-    height: 150px;
+    height: 200px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     text-align: center;
     padding: 20px;
     text-align: center;
@@ -53,12 +105,6 @@ ul.movelist{
     display: inline-block;
     text-align: left;
 }
-
-/* Recently Searched*/
-
-/*.pokesearchbar {
-    size: 50;
-}*/
 
 .container {
     position: relative;
@@ -89,3 +135,15 @@ ul.movelist{
     display: block;
 
 }
+
+@media screen and (max-width: 768px) {
+    .section {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .section {
+      width: 100%;
+    }
+  }
