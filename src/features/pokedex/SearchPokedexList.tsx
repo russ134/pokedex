@@ -66,6 +66,7 @@ const SearchPokedexList = () => {
       <input
         type="text"
         id="searchInput"
+        placeholder="Enter Pokemon name"
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
       />
