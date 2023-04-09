@@ -34,6 +34,11 @@ const SearchPokedexList = () => {
     handleSearch(q);
   }
 
+  function resetQuery(): void{
+    const resetSearchInput = document.getElementById("searchInput") as HTMLInputElement;
+    resetSearchInput.value = "";
+  }
+
   useEffect(() => {
     setPokemonMoves([]);
     if (selectedPokemon) {
@@ -79,6 +84,7 @@ const SearchPokedexList = () => {
         onChange={(event) => setSearchQuery(event.target.value)}
       />
       <button onClick={() => handleSearch(searchQuery)}>Search</button>
+      <button onClick={() => resetQuery()}>Reset</button>
     </div>
 
     <div id="searchresults" className={styles.row}>
