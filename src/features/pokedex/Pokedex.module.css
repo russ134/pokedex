@@ -93,9 +93,9 @@ div.resultarea {
 div.movelist {
     background-color: #fed9ff;
     width: 600px;
-    height: 200px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow: auto;
     text-align: center;
     padding: 20px;
     text-align: center;

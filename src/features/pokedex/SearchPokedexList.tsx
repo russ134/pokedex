@@ -28,6 +28,11 @@ const SearchPokedexList = () => {
     }
   };
 
+  function retryQuery(q: string): void {
+    const searchInput = document.getElementById("searchInput") as HTMLInputElement;
+    searchInput.value = q;
+}
+
   useEffect(() => {
     setPokemonMoves([]);
     if (selectedPokemon) {
@@ -45,13 +50,14 @@ const SearchPokedexList = () => {
 
   
 <div className={styles.section}>
+<h1>Search History</h1>
   <div id="searchhistory" className={styles.searchhistory}>
     {searchHistory.length > 0 && (
       <div>
         <p>Search History:</p>
         <ul>
           {searchHistory.map((term, index) => (
-            <li key={index}>{term}</li>
+            <li key={index}>{term} <button onClick={() => retryQuery(term)}>Retry</button></li>
           ))}
         </ul>
       </div>
@@ -60,6 +66,7 @@ const SearchPokedexList = () => {
 </div>
 
 <div className={styles.section}>
+  <h1>Search</h1>
   <div id="queryresults" className={styles.queryresults}>
     <div id="searchbar" className={styles.searchbar}>
       <label htmlFor="searchInput">I choose: </label>
@@ -91,6 +98,7 @@ const SearchPokedexList = () => {
 </div>
 
 <div className={styles.section}>
+<h1>Details</h1>
     <div id="pokedetails" className={styles.pokedetails}>
       {selectedPokemon && (
         <div className={styles.popup}>
