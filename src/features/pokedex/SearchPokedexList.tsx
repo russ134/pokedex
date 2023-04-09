@@ -31,6 +31,7 @@ const SearchPokedexList = () => {
   function retryQuery(q: string): void {
     const searchInput = document.getElementById("searchInput") as HTMLInputElement;
     searchInput.value = q;
+    handleSearch(q);
 }
 
   useEffect(() => {
