@@ -37,6 +37,7 @@ const SearchPokedexList = () => {
   function resetQuery(): void{
     const resetSearchInput = document.getElementById("searchInput") as HTMLInputElement;
     resetSearchInput.value = "";
+    setSearchQuery(resetSearchInput.value);
   }
 
   useEffect(() => {
