@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { MDBBtn} from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
 import { RootState } from './pokedexreducers';
 import { Pokemon, Ability, Move, Type } from './types/pokemontypes';
@@ -54,6 +55,17 @@ const SearchPokedexList = () => {
     }
   };
 
+
+/*const selectedMon = document.querySelector("pokeitem");
+selectedMon?.addEventListener('click', function(){
+  highlightDiv();
+});
+
+  function highlightDiv() {
+    const myDiv = document.getElementById("pokeitem") as HTMLDivElement;
+    myDiv.style.backgroundColor = "orange";
+  }*/
+
   function retryQuery(q: string): void {
     const searchInput = document.getElementById("searchInput") as HTMLInputElement;
     searchInput.value = q;
@@ -94,7 +106,7 @@ const SearchPokedexList = () => {
         <p>Search History:</p>
         <ul>
           {searchHistory.map((term, index) => (
-            <li key={index}>{term} <button onClick={() => retryQuery(term)}>Retry</button></li>
+            <li key={index}>{term} <MDBBtn onClick={() => retryQuery(term)}>Retry</MDBBtn></li>
           ))}
         </ul>
       </div>
@@ -114,8 +126,8 @@ const SearchPokedexList = () => {
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
       />
-      <button onClick={() => handleSearch(searchQuery)}>Search</button>
-      <button onClick={() => resetQuery()}>Reset</button>
+      <MDBBtn onClick={() => handleSearch(searchQuery)}>Search</MDBBtn>
+      <MDBBtn onClick={() => resetQuery()} color="success">Reset</MDBBtn>
     </div>
 
     <div id="searchresults" className={styles.row}>
@@ -134,15 +146,13 @@ const SearchPokedexList = () => {
     </div>
   </div>
 </div>
-
 <div className={styles.section}>
 <h1>Details</h1>
     <div id="pokedetails" className={styles.pokedetails}>
       {selectedPokemon && (
         <div className={styles.popup}>
           <div className={styles.popupContent}>
-            <button className={styles.closeButton} onClick={() => setSelectedPokemon(null)}>Close X</button>
-
+            <MDBBtn className="mx-2" color="tertiary" rippleColor="light" onClick={() => setSelectedPokemon(null)}>Close X</MDBBtn>
         <div id="typel">
             <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Type:</h4>
           <div id="typelist">
@@ -159,7 +169,6 @@ const SearchPokedexList = () => {
             </ul>
           </div>
         </div>  
-        
           <div id="abilityl">
             <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Abilities:</h4>
           <div id="abilitylist">
@@ -176,7 +185,6 @@ const SearchPokedexList = () => {
             </ul>
           </div>
         </div>        
-        
         <div id="movel">
             <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h4>
           <div id="movelist">
@@ -193,8 +201,6 @@ const SearchPokedexList = () => {
             </ul>
           </div>
         </div>
-
-
           </div>
         </div>
       )}

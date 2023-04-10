@@ -2,6 +2,7 @@
   text-align: center;
   background-color: cornflowerblue;
   height: 100vh;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 .App-logo {
@@ -22,6 +23,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  background-color: crimson;
 }
 
 .App-link {

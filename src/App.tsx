@@ -1,6 +1,4 @@
-import React from 'react';
 import logo from './images/logo_pokedex.png';
-//import Pokedex from './features/pokedex/Pokedex';
 import SearchPokedexList from './features/pokedex/SearchPokedexList';
 import './App.css';
 
@@ -9,8 +7,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
         <div>
-          {/*<Pokedex />*/}
         </div>
       </header>
       <SearchPokedexList />
