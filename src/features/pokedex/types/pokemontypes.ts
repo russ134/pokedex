@@ -1,8 +1,18 @@
+import { type } from "os";
+
 //Defining Pokemon for use across the app
 export interface Pokemon {
     id: number;
     name: string;
     imageUrl: string;
+
+}
+
+export interface Ability {
+    ability: {
+        name: string;
+        url: string;
+    }
 
 }
 
@@ -12,6 +22,13 @@ export interface Move {
       url: string;
     };
   }
+
+export interface Type {
+    type: {
+        name: string;
+        url: string;
+    }
+}
 
 
 export interface AppState {

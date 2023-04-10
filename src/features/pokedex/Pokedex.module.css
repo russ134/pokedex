@@ -90,11 +90,50 @@ div.resultarea {
 }*/
 
 
+div.abilitylist {
+    background-color: #fed9ff;
+    width: 600px;
+    min-height: 20vh;
+    max-height: 20vh;
+    overflow: auto;
+    text-align: center;
+    padding: 20px;
+    text-align: center;
+}
+
+ul.abilitylist{
+    display: inline-block;
+    text-align: left;
+    min-height: 5vh;
+    max-height: 5vh;
+    overflow: auto;
+}
+
+
+div.typelist {
+    background-color: #fed9ff;
+    width: 600px;
+    min-height: 20vh;
+    max-height: 20vh;
+    overflow: auto;
+    text-align: center;
+    padding: 20px;
+    text-align: center;
+}
+
+ul.typelist{
+    display: inline-block;
+    text-align: left;
+    min-height: 5vh;
+    max-height: 5vh;
+    overflow: auto;
+}
+
 div.movelist {
     background-color: #fed9ff;
     width: 600px;
-    min-height: 60vh;
-    max-height: 60vh;
+    min-height: 30vh;
+    max-height: 30vh;
     overflow: auto;
     text-align: center;
     padding: 20px;
@@ -104,6 +143,9 @@ div.movelist {
 ul.movelist{
     display: inline-block;
     text-align: left;
+    min-height: 30vh;
+    max-height: 30vh;
+    overflow: auto;
 }
 
 .container {
