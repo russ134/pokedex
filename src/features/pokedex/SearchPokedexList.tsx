@@ -115,7 +115,6 @@ const SearchPokedexList = () => {
       <MDBBtn className={styles.pokebtn} onClick={() => handleSearch(searchQuery)}>Search</MDBBtn>
       <MDBBtn className={styles.pokebtn} onClick={() => resetQuery()} color="success">Reset</MDBBtn>
     </div>
-
     <div id="searchresults" className={styles.row}>
       <div className={styles.resultwrapper}>
         {filteredPokemon.map((pokemon: Pokemon, index: number) => (
