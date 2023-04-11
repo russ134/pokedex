@@ -1,6 +1,6 @@
 //Reducer
 import { combineReducers } from 'redux';
-import { PokemonActionTypes } from './api/pokedexactions';//Actions
+import { PokemonActionTypes } from './api/pokedexactions';
 import { AppState } from './types/pokemontypes';
   
   const initialState: AppState = {
