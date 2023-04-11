@@ -24,7 +24,7 @@ Your intended Pokemon its Type, Abilities, and Moves are sectional displayed in 
 ### Search History
 When you hit the "Search button your keyord is saved in the "Search History", allowing you run the same search again via the "Retry" button. It also lists all previous searches
 
-![App_Image](https://github.com/russ134/pokedex/blob/main/src/images/appstuff/Search History.png)
+![App_Image](https://github.com/russ134/pokedex/blob/main/src/images/appstuff/Search%20History.png)
 
 ## Enhancements TODO and Complete:
 
