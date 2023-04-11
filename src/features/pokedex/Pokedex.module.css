@@ -118,25 +118,6 @@ div.resultarea {
     color: orange;
 }
 
-div.evolvelist {
-    background-color: #fed9ff;
-    width: 600px;
-    min-height: 20vh;
-    max-height: 20vh;
-    overflow: auto;
-    text-align: left;
-    padding: 20px;
-}
-
-ul.evolvelist{
-    width: 600px;
-    display: inline-block;
-    text-align: left;
-    min-height: 5vh;
-    max-height: 5vh;
-    overflow: auto;
-}
-
 div.abilityl {
     width: 400px;
 }
