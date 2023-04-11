@@ -6,7 +6,7 @@
 
 ## Pokemon Search and Search Bar
 
-You can search for any of the 905 Pokemon from Pokemon API (https://pokeapi.co/docs/v2) dynamically via typing have the results change based on key word. When you hit the "Search" button your keyord is saved in the "Search History", allowing you run the same search again via the "Retry" button. The "Reset" button refreshes the collectio so you can start again with all Pokemon loaded from the API.
+You can search for any of the 905 Pokemon from the Pokemon API (https://pokeapi.co/docs/v2) dynamically via typing and have the Pokemon results change based on key word. When you hit the "Search" button your keyord is saved in the "Search History", allowing you run the same search again via the "Retry" button. The "Reset" button refreshes the collectio so you can start again with all Pokemon loaded from the API.
 
 For indication when you hover over a Pokemon it highlights orange, and when you click on 
 
