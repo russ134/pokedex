@@ -26,7 +26,7 @@ When you hit the "Search button your keyord is saved in the "Search History", al
 
 ![App_Image](https://github.com/russ134/pokedex/blob/main/src/images/appstuff/Search%20History.png)
 
-## Enhancements TODO and Complete:
+## Enhancements TODO:
 
 1. Evolved Forms and Evolution Chain - Add the Pokemon Evolution as part of "Details" section
 
