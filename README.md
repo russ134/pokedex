@@ -40,7 +40,9 @@ When you hit the "Search button your keyord is saved in the "Search History", al
 
 ## Learn More
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template. 
+
+Also using MDB or Material Design for Bootstrap kit for some UI styling.
 
 ## Available Scripts
 
