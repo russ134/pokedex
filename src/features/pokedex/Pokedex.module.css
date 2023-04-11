@@ -10,8 +10,6 @@
     border-radius: 5px;
 }
 
-/*Parent Wrapper*/
-
 div.parentwrapper{
     display: flex;
     flex-wrap: wrap;
@@ -21,24 +19,36 @@ div.parentwrapper{
 
 .section {
     width: calc(33.33% - 20px);
-    padding: 20px;
+    padding: 25px;
     box-sizing: border-box;
-    background-color: #f1f1f1;
+    background-color: rgb(196, 239, 248);
     margin-bottom: 20px;
     min-height: 60vh;
-  }
-/*Search Bar*/
+    margin-top: 40px;
+    border-radius: 60px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 div.searchbar {
     min-height: 3vh;
     max-height: 20vh;
+    padding: 5px;
+    margin-left: 10px;
 }
 
-/* Recently Searched*/
+.pokebtn {
+    margin-left: 10px;
+}
+
 div.searchhistory{
     min-height: 60vh;
     max-height: 60vh;
     overflow: auto;
     text-align: left;
+    max-width: 700px;
+    display: 'flex';
+    justify-content: center;
+    align-items: center;
 }
 
 div.queryresults {
@@ -46,8 +56,27 @@ div.queryresults {
     overflow: auto;
 }
 
+.pokebtnHistory {
+    margin-left: 40px;
+    width: 100px;
 
-/* Pokedex */
+}
+
+.historyItem {
+    width: 100%;
+    margin-bottom: 10px;;
+}
+
+.listHistory {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .list-itemHistoy {
+    /* optional: center the item vertically */
+    align-items: center;
+  }
+
 div.pokedetails{
     min-height: 60vh;
     max-height: 60vh;
@@ -69,7 +98,6 @@ div.resultarea {
     align-items: center;
     justify-content: center;
     height: "100%";
-    /*background-color: crimson;*/
     border-radius: 5px;
     min-height: 60vh;
 
@@ -81,25 +109,41 @@ div.resultarea {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+.resultitem:hover {
+    background-color: orange;
+}
+
 
 .itemhighlight {
-    background-color: orange;
-  }
+    color: orange;
+}
 
-/*.scrollable-list {
-    height: 200px;
-    overflow-y: scroll;
-  }*/
+div.evolvelist {
+    background-color: #fed9ff;
+    width: 600px;
+    min-height: 20vh;
+    max-height: 20vh;
+    overflow: auto;
+    text-align: left;
+    padding: 20px;
+}
 
-/*Pokemon Details*/
-/*div.pokedetails{
+ul.evolvelist{
+    width: 600px;
+    display: inline-block;
+    text-align: left;
+    min-height: 5vh;
+    max-height: 5vh;
+    overflow: auto;
+}
 
-}*/
-
+div.abilityl {
+    width: 400px;
+}
 
 div.abilitylist {
     background-color: #fed9ff;
-    width: 600px;
+    width: 400px;
     min-height: 20vh;
     max-height: 20vh;
     overflow: auto;
@@ -108,18 +152,18 @@ div.abilitylist {
 }
 
 ul.abilitylist{
-    width: 600px;
+    width: 350px;
     display: inline-block;
     text-align: left;
-    min-height: 5vh;
-    max-height: 5vh;
+    min-height: 13vh;
+    max-height: 13vh;
     overflow: auto;
 }
 
 
 div.typelist {
     background-color: #fed9ff;
-    width: 600px;
+    width: 400px;
     min-height: 20vh;
     max-height: 20vh;
     overflow: auto;
@@ -128,17 +172,17 @@ div.typelist {
 }
 
 ul.typelist{
-    width: 600px;
+    width: 350px;
     display: inline-block;
     text-align: left;
-    min-height: 5vh;
-    max-height: 5vh;
+    min-height: 13vh;
+    max-height: 13vh;
     overflow: auto;
 }
 
 div.movelist {
     background-color: #fed9ff;
-    width: 600px;
+    width: 400px;
     min-height: 30vh;
     max-height: 30vh;
     overflow: auto;

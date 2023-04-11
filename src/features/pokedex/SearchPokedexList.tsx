@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { MDBBtn} from 'mdb-react-ui-kit';
+import React, { useState, useEffect} from 'react';
+import { MDBBtn, MDBListGroup, MDBListGroupItem} from 'mdb-react-ui-kit';
 import { useSelector } from 'react-redux';
 import { RootState } from './pokedexreducers';
-import { Pokemon, Ability, Move, Type } from './types/pokemontypes';
+import { Pokemon, Ability, Move, Type} from './types/pokemontypes';
 import styles from './Pokedex.module.css';
 import axios from 'axios';
 
@@ -13,14 +13,11 @@ const SearchPokedexList = () => {
   const [pokemonAbilities, setPokemonAbilities] = useState<string[][]>([]);
   const [pokemonTypes, setPokemonTypes] = useState<string[][]>([]);
   const pokemonList = useSelector((state: RootState) => state.pokemon.pokemonList);
-
   const [selectedPokemon, setSelectedPokemon] = useState<Pokemon | null>(null);
 
   const filteredPokemon = pokemonList.filter((pokemon: Pokemon) =>
     pokemon?.name?.includes(searchQuery.toLowerCase())
   );
-
-
 
   const fetchPokemonMoves = async (id: number) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -54,17 +51,6 @@ const SearchPokedexList = () => {
       setPokemonTypes((prevState) => [...prevState, typeArray]);
     }
   };
-
-
-/*const selectedMon = document.querySelector("pokeitem");
-selectedMon?.addEventListener('click', function(){
-  highlightDiv();
-});
-
-  function highlightDiv() {
-    const myDiv = document.getElementById("pokeitem") as HTMLDivElement;
-    myDiv.style.backgroundColor = "orange";
-  }*/
 
   function retryQuery(q: string): void {
     const searchInput = document.getElementById("searchInput") as HTMLInputElement;
@@ -103,12 +89,12 @@ selectedMon?.addEventListener('click', function(){
   <div id="searchhistory" className={styles.searchhistory}>
     {searchHistory.length > 0 && (
       <div>
-        <p>Search History:</p>
-        <ul>
+        <p>Previous Keyword Searches:</p>
+        <MDBListGroup className={styles.searchhistory}>
           {searchHistory.map((term, index) => (
-            <li key={index}>{term} <MDBBtn onClick={() => retryQuery(term)}>Retry</MDBBtn></li>
+            <MDBListGroupItem key={index} className={styles.historyItem}><MDBBtn className={styles.pokebtnHistory} onClick={() => retryQuery(term)}>Retry</MDBBtn> {term} </MDBListGroupItem>
           ))}
-        </ul>
+        </MDBListGroup>
       </div>
     )}
   </div>
@@ -126,8 +112,8 @@ selectedMon?.addEventListener('click', function(){
         value={searchQuery}
         onChange={(event) => setSearchQuery(event.target.value)}
       />
-      <MDBBtn onClick={() => handleSearch(searchQuery)}>Search</MDBBtn>
-      <MDBBtn onClick={() => resetQuery()} color="success">Reset</MDBBtn>
+      <MDBBtn className={styles.pokebtn} onClick={() => handleSearch(searchQuery)}>Search</MDBBtn>
+      <MDBBtn className={styles.pokebtn} onClick={() => resetQuery()} color="success">Reset</MDBBtn>
     </div>
 
     <div id="searchresults" className={styles.row}>
@@ -137,7 +123,7 @@ selectedMon?.addEventListener('click', function(){
             id="pokeitem"
             key={pokemon.id}
             className={styles.resultitem}
-            onClick={() => setSelectedPokemon(pokemon)}>
+            onClick={() => {setSelectedPokemon(pokemon);}}>
             <img src={pokemon.imageUrl} alt={pokemon.name} />
             <p>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</p>
           </div>
@@ -154,51 +140,51 @@ selectedMon?.addEventListener('click', function(){
           <div className={styles.popupContent}>
             <MDBBtn className="mx-2" color="tertiary" rippleColor="light" onClick={() => setSelectedPokemon(null)}>Close X</MDBBtn>
         <div id="typel">
-            <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Type:</h4>
+            <h4 className='bg-light p-2 border-top border-bottom'>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} - Pokemon Type:</h4>
           <div id="typelist">
-            <ul className={styles.typelist}>
+            <MDBListGroup className={styles.typelist}>
             {pokemonTypes.map((types: string[], index: number) => (
                   types.length > 0 && (
-                  <li key={index}>
+                  <MDBListGroupItem key={index}>
                     {types.filter(Boolean).map((typeName: string, i: number) => (
-                        <li key={i}>{typeName.charAt(0).toUpperCase()+typeName.slice(1)}</li>
+                        <MDBListGroupItem key={i}>{typeName.charAt(0).toUpperCase()+typeName.slice(1)}</MDBListGroupItem>
                     ))}
-                  </li>
+                  </MDBListGroupItem>
                   )
               ))}
-            </ul>
+            </MDBListGroup>
           </div>
-        </div>  
+        </div> 
           <div id="abilityl">
-            <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Abilities:</h4>
+            <h4 className='bg-light p-2 border-top border-bottom groupheader'>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Abilities:</h4>
           <div id="abilitylist">
-            <ul className={styles.abilitylist}>
+            <MDBListGroup className={styles.abilitylist}>
             {pokemonAbilities.map((abilities: string[], index: number) => (
                   abilities.length > 0 && (
-                  <li key={index}>
+                  <MDBListGroupItem key={index}>
                     {abilities.filter(Boolean).map((abilityName: string, i: number) => (
-                        <li key={i}>{abilityName.charAt(0).toUpperCase()+abilityName.slice(1)}</li>
+                        <MDBListGroupItem key={i}>{abilityName.charAt(0).toUpperCase()+abilityName.slice(1)}</MDBListGroupItem>
                     ))}
-                  </li>
+                  </MDBListGroupItem>
                   )
               ))}
-            </ul>
+            </MDBListGroup>
           </div>
         </div>        
         <div id="movel">
-            <h4>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h4>
+            <h4 className='bg-light p-2 border-top border-bottom'>{selectedPokemon && selectedPokemon.name && selectedPokemon.name.charAt(0).toUpperCase()+selectedPokemon.name.slice(1)} Moves:</h4>
           <div id="movelist">
-            <ul className={styles.movelist}>
+            <MDBListGroup className={styles.movelist}>
             {pokemonMoves.map((moves: string[], index: number) => (
                   moves.length > 0 && (
-                  <li key={index}>
+                  <MDBListGroupItem key={index}>
                     {moves.filter(Boolean).map((moveName: string, i: number) => (
-                        <li key={i}>{moveName.charAt(0).toUpperCase()+moveName.slice(1)}</li>
+                        <MDBListGroupItem key={i}>{moveName.charAt(0).toUpperCase()+moveName.slice(1)}</MDBListGroupItem>
                     ))}
-                  </li>
+                  </MDBListGroupItem>
                   )
               ))}
-            </ul>
+            </MDBListGroup>
           </div>
         </div>
           </div>
@@ -206,7 +192,6 @@ selectedMon?.addEventListener('click', function(){
       )}
     </div>
 </div>
-
     </div>
   );
 };

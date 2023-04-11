@@ -71,28 +71,3 @@ export const fetchPokemon = (): ThunkAction<
     });
 };
 
-// Thunk action creator to fetch Pokemon data
-/*export const fetchPokemonMoves = (): ThunkAction<
-  void,
-  RootState,
-  null,
-  PokemonActions> => async (dispatch: Dispatch<PokemonActions>, getState: () => RootState) => {
-  dispatch(fetchPokemonRequest());
-  axios
-    .get('https://pokeapi.co/api/v2/move/?limit=905')
-    .then((response) => {
-      console.log(response);
-      const pokemonList = response.data.results.map((pokemon: any, index: number) => {
-        return {
-          id: index + 1,
-          name: pokemon.name,
-          imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`,
-        };
-      });
-      dispatch(fetchPokemonSuccess(pokemonList));
-    })
-    .catch((error) => {
-      dispatch(fetchPokemonFailure(error.message));
-    });
-};*/
-

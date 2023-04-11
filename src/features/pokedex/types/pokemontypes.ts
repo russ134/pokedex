@@ -1,6 +1,3 @@
-import { type } from "os";
-
-//Defining Pokemon for use across the app
 export interface Pokemon {
     id: number;
     name: string;
@@ -29,7 +26,6 @@ export interface Type {
         url: string;
     }
 }
-
 
 export interface AppState {
     pokemonList: Pokemon[];
